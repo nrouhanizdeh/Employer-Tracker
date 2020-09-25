@@ -1,30 +1,18 @@
-var mysql = require("mysql");
+var orm = require("./config/orm.js");
+
+// Find all the pets ordering by the lowest price to the highest price.
+orm.selectAndOrder("animal_name", "pets", "price");
+
+// Find a pet in the pets table by an animal_name of Rachel.
+orm.selectWhere("pets", "animal_name", "Rachel");
+
+// Find the buyer with the most pets.
+orm.findWhoHasMost("buyer_name", "buyer_id", "buyers", "pets");
+
+
+
 var inquirer = require("inquirer");
 
-// create the connection information for the sql database
-var connection = mysql.createConnection({
-  host: "localhost",
-  port: 3306,
-  user: "root",
-  password: "password",
-  database: "employeeDB"
-});
-
-connection.connect(function(err) {
-  if (err) throw err;
-  console.log("connected as id " + connection.threadId + "\n");
-  readColleges();
-});
-
-function readColleges() {
-  connection.query("SELECT name FROM colleges", function(err, res) {
-    if (err) throw err;
-
-    // Log all results of the SELECT statement
-    console.log(res);
-    connection.end();
-  });
-}
 
 // prompt user 
 inquirer.prompt([
@@ -33,12 +21,12 @@ inquirer.prompt([
     name: "action",
     message: "What would you like to do?",
     choices: [
-      "Add Employee",
-      "Add Role",
-      "Add Department",
       "View All Employees",
       "View All Roles",
       "View All Departments",
+      "Add Employee",
+      "Add Role",
+      "Add Department",
       "Update Employee Role",
     ]  
   },
