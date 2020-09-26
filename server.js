@@ -1,21 +1,10 @@
 var orm = require("./config/orm.js");
-
-// Find all the pets ordering by the lowest price to the highest price.
-orm.selectAndOrder("animal_name", "pets", "price");
-
-// Find a pet in the pets table by an animal_name of Rachel.
-orm.selectWhere("pets", "animal_name", "Rachel");
-
-// Find the buyer with the most pets.
-orm.findWhoHasMost("buyer_name", "buyer_id", "buyers", "pets");
-
-
-
 var inquirer = require("inquirer");
+var connection = require("./config/connection.js");
 
 
 // prompt user 
-inquirer.prompt([
+inquirer.prompt(
   {
     type: "checkbox",
     name: "action",
@@ -27,28 +16,49 @@ inquirer.prompt([
       "Add Employee",
       "Add Role",
       "Add Department",
-      "Update Employee Role",
+      "Update Employee Role"
     ]  
-  },
-  {
-    type: "input",
-    name: "firstname",
-    message: "What is the employee's first name?"
-  },
-  {
-    type: "input",
-    name: "lastname",
-    message: "What is the employee's last name?"
-  }
-]).then(function(data) {
-
-  fs.writeFile("README-output.md", output, function(err) {
-
-    if (err) {
-      return console.log(err);
-    }
-
-    console.log("Success!");
-
-  });
+  }).then(function(answer) {
+    switch (answer.action[0]) {
+      case "View All Employees":
+        orm.selectAllEmployees();
+        break;
+  
+      case "View All Roles":
+        orm.selectAll("title","role");
+        break;
+  
+      case "View All Departments":
+        orm.selectAll("name","department");
+        break;
+  
+      case "Add Employee":
+        addEmployee();
+        break;
+  
+      case "Add Department":
+        addDept();
+        break;
+      case "Update Employee Role":
+        addRole();
+        break;
+      }
 });
+
+
+//   {
+//     type: "input",
+//     name: "firstname",
+//     message: "What is the employee's first name?",
+//     when: answers.action ===  "Add Employee"
+//   },
+//   {
+//     type: "input",
+//     name: "lastname",
+//     message: "What is the employee's last name?",
+//     filter: answers => answers.action
+//   }
+// ]).then(function(data) {
+//     console.log("Success!");
+
+//   });
