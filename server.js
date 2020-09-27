@@ -36,7 +36,7 @@ inquirer.prompt(
         addEmployee();
         break;
       case "Add Department":
-        addDept("department","name");
+        addDept();
         break;
       case "Add Role":
         addRole();
@@ -145,9 +145,10 @@ function addDept() {
                                               ,[answers.name]
                                               ,function (err, res) {
                                                  if (err) throw err;
+                                                 connection.end();
                                                });
+                                               
             });
-   connection.end();
 };
 
 
@@ -183,9 +184,10 @@ function updateRole(){
                                               ,function (err, res) {
                                                  if (err) throw err;
                                                });
+                                               connection.end();
             });
             
     });
   });
-  connection.end();
+
 }

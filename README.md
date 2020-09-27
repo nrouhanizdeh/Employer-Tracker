@@ -19,9 +19,11 @@
 2. Update connection.js wih your database connection info
 3. Run ```node server.js```
 
+  ## Demo
+  Please watch the [demo](https://drive.google.com/file/d/1jsU-0Bj53ihXQblxUgqdmxJrG2jfxuo1/view) to see the application functionality.
+
   ## Contribute
   Please submit [bugs and feature requests](https://github.com/nrouhanizdeh/Employer-Tracker/issues)
-
 
   ## License
   MIT
