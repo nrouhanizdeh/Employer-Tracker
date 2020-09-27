@@ -4,7 +4,6 @@
   * [Description](#Description)
   * [Installation](#Unstallation)
   * [Usage](#Usage)
-  * [Tests Instructions](#Tests)
   * [Contribute](#contribute)
   * [License](#License)
   * [Questions](#questions)
@@ -19,10 +18,6 @@
 1. Build the database (My SQL) and tables (schema.db is provided)
 2. Update connection.js wih your database connection info
 3. Run ```node server.js```
-
-
-  ## Tests
-  
 
   ## Contribute
   Please submit [bugs and feature requests](https://github.com/nrouhanizdeh/Employer-Tracker/issues)

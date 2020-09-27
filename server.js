@@ -90,10 +90,11 @@ function addEmployee() {
                                               ,function (err, res) {
                                                  if (err) throw err;
                                                });
+                                               connection.end();
             });
     });
-
   });
+  
 };
 
 
@@ -102,8 +103,7 @@ function addRole() {
 
   connection.query(dept, function (err, res) {
     if (err) throw err;
-    const departments = res.map(({id, department}) => ({name: department,value: id}));
-
+    const departments = res.map(({id, name}) => ({name: name,value: id}));
     inquirer.prompt(
         [
           {
@@ -122,12 +122,13 @@ function addRole() {
             message: "Which department?",
             choices: departments
           }
-        ]).then(answers => { connection.query(`INSERT INTO role (title,salary,department_id) VALUES (?,?,?)`
+        ]).then(answers => { connection.query("INSERT INTO role (title,salary,department_id) VALUES (?,?,?)"
                                               ,[answers.item,answers.salary,answers.department]
                                               ,function (err, res) {
                                                  if (err) throw err;
                                                });
-            });
+                                               connection.end();
+            });  
   });
 };
 
@@ -146,6 +147,7 @@ function addDept() {
                                                  if (err) throw err;
                                                });
             });
+   connection.end();
 };
 
 
@@ -182,7 +184,8 @@ function updateRole(){
                                                  if (err) throw err;
                                                });
             });
+            
     });
-
   });
+  connection.end();
 }
