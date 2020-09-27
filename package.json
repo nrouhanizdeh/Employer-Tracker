@@ -13,5 +13,14 @@
     "console.table": "^0.10.0",
     "inquirer": "^7.3.3",
     "mysql": "^2.16.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nrouhanizdeh/Employer-Tracker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nrouhanizdeh/Employer-Tracker/issues"
+  },
+  "homepage": "https://github.com/nrouhanizdeh/Employer-Tracker#readme"
 }
